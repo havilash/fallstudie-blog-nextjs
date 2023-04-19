@@ -18,7 +18,7 @@ export default function useSession() {
         if (savedSession) {
             try {
                 const value = JSON.parse(savedSession)
-                const { exp } = jwtDecode(value.accessToken)
+                const { exp } = jwtDecode(value.token)
                 const expirationDate = new Date(0)
                 expirationDate.setUTCSeconds(exp)
                 const now = new Date()

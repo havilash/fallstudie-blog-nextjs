@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from './index.module.css'
 
-export default function PostsPage() {
+export default function PostsIdPage({session}) {
     const router = useRouter()
     const { id } = router.query
     const [post, setPost] = useState(null)
@@ -22,7 +22,7 @@ export default function PostsPage() {
     }, [id])
 
     function handleDelete() {
-        deletePost(post.id)
+        deletePost(post.id, session.token)
         router.push('/')
     }
 
@@ -43,10 +43,14 @@ export default function PostsPage() {
                         </div>
                     </div>
                 </div>
-                <form className={styles.form}>
-                    <Link href={`/posts/${id}/edit`}><button>Edit</button></Link>
-                    <button onClick={handleDelete}>X</button>
-                </form>
+                {
+                    (session.ready && session.user) && (
+                        <form className={styles.form}>
+                            <Link href={`/posts/${id}/edit`}><button>Edit</button></Link>
+                            <button onClick={handleDelete}>X</button>
+                        </form>
+                    )
+                }
             </div>
         ) 
     }

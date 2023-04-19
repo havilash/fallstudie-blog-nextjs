@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { getAllPosts } from '@lib/api'
 import Link from 'next/link'
 import styles from './index.module.css'
+import { useRedirectToLogin } from '@lib/session'
 
-export default function PostsPage() {
+export default function PostsPage({session}) {
     const [posts, setPosts] = useState([])
 
 

@@ -1,3 +1,4 @@
+const AUTH_URL = "http://localhost:9001/authenticate"
 const URL = "http://localhost:9001/api/posts"
 
 export async function getAllPosts() {
@@ -23,11 +24,12 @@ export async function getPostById(id) {
     return data
 }
 
-export async function createPost(post) {
+export async function createPost(post, token) {
     const response = await fetch(URL, {
         method: "POST",
         headers: {
-        "content-type": "application/json",
+            "authorization": `Bearer ${token}`,
+            "content-type": "application/json",
         },
         body: JSON.stringify(post)
     })
@@ -40,12 +42,13 @@ export async function createPost(post) {
     return data
 }
 
-export async function updatePost(post) {
+export async function updatePost(post, token) {
     
     const response = await fetch(`${URL}/${post.id}`, {
         method: "PUT",
         headers: {
-        "content-type": "application/json",
+            "authorization": `Bearer ${token}`,
+            "content-type": "application/json",
         },
         body: JSON.stringify(post)
     })
@@ -58,13 +61,33 @@ export async function updatePost(post) {
     return data
 }
 
-export async function deletePost(id) {
+export async function deletePost(id, token) {
     const response = await fetch(`${URL}/${id}`,{
         method: "DELETE",
+        headers: {
+            "authorization": `Bearer ${token}`,
+        }
     })
 
     if (!response.ok) {
        return Promise.reject(response.statusText)
+    }
+
+    const data = await response.json()
+    return data
+}
+
+export async function login({ email, password }) {
+    const response = await fetch(AUTH_URL, {
+        method: "POST",
+        headers: {
+        "content-type": "application/json",
+        },
+        body: JSON.stringify({email, password})
+    })
+
+    if (!response.ok) {
+        return Promise.reject(response.statusText)
     }
 
     const data = await response.json()

@@ -27,7 +27,7 @@ function validateModel(post) {
         return { errors, isValid }
 }
 
-export default function PostForm({ postToEdit }) {
+export default function PostForm({ session, postToEdit }) {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState(defaultModel)
@@ -59,10 +59,11 @@ export default function PostForm({ postToEdit }) {
         }
 
         if (post.id) {
-            await updatePost(post)
+            await updatePost(post, session.token)
             router.push(`/posts/${post.id}`)
         } else {
-            await createPost(post)
+            post.userId = session.user.id
+            await createPost(post, session.token)
             router.push(`/`)
         }
 
