@@ -14,12 +14,17 @@
     }
   }
 
-.postform > input {
+.postform > input, .postform > textarea {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid white;
     color: white;
     font-size: large;
+}
+
+.postform > textarea {
+    border: 1px solid white;
+    height: 5rem;
 }
 
 .postform > button {

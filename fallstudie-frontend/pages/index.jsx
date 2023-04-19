@@ -23,15 +23,15 @@ export default function PostsPage({session}) {
             {
                 posts.map((post) => {
                     return (
-                        <Link key={`post-${post.id}`} href={`/posts/${post.id}/`}>                       
-                            <li key={`post-${post.id}`} className='post'>
+                        <li key={`post-${post.id}`}>
+                            <Link className='post' key={`post-${post.id}`} href={`/posts/${post.id}/`}>                       
                                 <img src="https://picsum.photos/300/300" alt="" />
                                 <div>
                                     <h2>{post.title}</h2>
                                     <p>{post.text}</p>
                                 </div>
-                            </li>
-                        </Link>
+                            </Link>
+                        </li>
                     )
                 })
             }

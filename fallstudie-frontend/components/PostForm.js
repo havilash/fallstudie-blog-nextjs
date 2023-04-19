@@ -76,7 +76,7 @@ export default function PostForm({ session, postToEdit }) {
                 <input type="text" name="title" onChange={handleChange} value={post.title} />
                 {errors.title && <div className={styles.error}>{errors.title}</div>}
                 <label>Text:</label>
-                <input type="text" name="text" onChange={handleChange} value={post.text} />
+                <textarea type="text" name="text" onChange={handleChange} value={post.text} />
                 {errors.text && <div className={styles.error}>{errors.text}</div>}
                 <button type="submit" name="submit" onClick={handleSubmit}>Submit</button>
         </div>
