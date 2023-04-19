@@ -1,0 +1,39 @@
+.postform {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-self: center;
+    width: 50%;
+    height: fit-content;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .postform {
+      width: 100%;
+    }
+  }
+
+.postform > input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: large;
+}
+
+.postform > button {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    border: none;
+    color: black;
+    background-color: white;
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: .3rem;
+}
+
+.postform > button:hover {
+    cursor: pointer;
+}

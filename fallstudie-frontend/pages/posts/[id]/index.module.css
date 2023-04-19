@@ -1,0 +1,23 @@
+.form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+    
+}
+
+.form button {
+    padding: .5rem 1rem;
+    border-radius: .3rem;
+    border: 0;
+    background-color: #303030;
+    color: white;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.form button:hover {
+    cursor: pointer;
+    background-color: #3d3d3d;
+}
